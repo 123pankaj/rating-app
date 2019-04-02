@@ -6,7 +6,10 @@ Rating application provides the means for customers to give ratings to the produ
 
 This app is a very simple flask app to give product ratings built using Flask, flask-restful, marshmallow, SQLAlchemy.
 It comes with basic models : 
+
+
 ![Data base deisgn](database_design.png)
+
 * User Model :
     * id: Integer
     * username: String
@@ -61,7 +64,7 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
-You have now access to cli commands and you can init the app
+You have now access to cli commands and you can init the app. This will intialize the db and create sample user, products and order.
 
 ```
 rating_app init
@@ -89,9 +92,14 @@ curl -X POST http://127.0.0.1:5000/api/v1/users -H 'Content-Type: application/js
 curl -X POST http://127.0.0.1:5000/api/v1/products -H 'Content-Type: application/json' -d '{"name": "Table", "price": 20.0}'
 ```
 
+### Get product (Provides product details such product name, price and average consumer ratings)
+```bash
+curl -X GET http://127.0.0.1:5000/api/v1/products/1 -H 'Content-Type: application/json'
+```
+
 ### Create Order
 ```bash
-curl -X POST http://127.0.0.1:5000/api/v1/products -H 'Content-Type: application/json' -d '{"name": "Table", "price": 20.0}'
+curl -X POST http://127.0.0.1:5000/api/v1/products -H 'Content-Type: application/json' -d '{"user_id": 1, "product_id":1, "quantity": 2}'
 ```
 
 ### List Users
